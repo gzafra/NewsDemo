@@ -43,7 +43,7 @@ extension ArticleViewModel {
     }
 }
 
-extension String {
+private extension String {
     var shortDate: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_GB")

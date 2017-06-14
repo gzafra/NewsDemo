@@ -7,29 +7,25 @@
 //
 
 import XCTest
+@testable import NewsDemo
 
 class ArticlesViewModelTests: XCTestCase {
+
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testArticleViewModelSetup() {
+        let article = Article(section: "Section name", title: "Title name", abstract: "This is a description", url: "http://www.domain.com/path", multimedia: [Multimedia(url: "http://www.domain.com/image1", format: .standard), Multimedia(url: "http://www.domain.com/image2", format: .large) ], author: "Author", creationDate: "2017-06-14T12:23:43-04:00")
+        
+        let articleViewModel = ArticleViewModel(with: article)
+        
+        XCTAssertEqual(articleViewModel.headline, article.title)
+        XCTAssertEqual(articleViewModel.description, article.abstract)
+        XCTAssertEqual(articleViewModel.articleUrl, article.url)
+        XCTAssertNotNil(articleViewModel.thumbnailImage)
+        XCTAssertNotNil(articleViewModel.image)
+        XCTAssertNotNil(articleViewModel.thumbnailImage?.urlString)
+        XCTAssertNotNil(articleViewModel.image?.urlString)
+        XCTAssertEqual(articleViewModel.author, article.author)
+        XCTAssertEqual(articleViewModel.creationDate, "14/06/2017")
     }
     
 }

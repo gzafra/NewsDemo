@@ -37,4 +37,21 @@ class DataManagerTests: XCTestCase {
         }, waitFor: 5.0)
     }
     
+    func testCachedData() {
+        testExpectation(description: "Fetching top stories from server", actionBlock: { (expectation) in
+            dataManager?.fetchTopStories(resultBlock: { (articles) in
+                XCTAssertNotNil(articles)
+                XCTAssertGreaterThanOrEqual(articles.count, 0)
+                
+                let cachedArticles = self.dataManager?.cachedTopStories()
+                XCTAssertNotNil(cachedArticles)
+                XCTAssertEqual(cachedArticles!.count, articles.count)
+                
+                expectation.fulfill()
+            }) { (error) in
+                XCTFail()
+            }
+        }, waitFor: 5.0)
+    }
+    
 }
