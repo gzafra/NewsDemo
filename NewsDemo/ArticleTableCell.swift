@@ -18,10 +18,7 @@ class ArticleTableCell: UITableViewCell {
         headlineLabel.text = article.headline
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    
 
     
 }

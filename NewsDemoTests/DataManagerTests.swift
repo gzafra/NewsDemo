@@ -37,5 +37,4 @@ class DataManagerTests: XCTestCase {
         }, waitFor: 5.0)
     }
     
-    
 }

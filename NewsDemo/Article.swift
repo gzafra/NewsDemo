@@ -10,43 +10,54 @@ import Foundation
 
 struct Article {
     let section: String
-    let subSection: String
     let title: String
+    let abstract: String
     let url: String
-    let thumbnail: String
-    let itemType: String
+    let multimedia: [Multimedia]?
+    let author: String
     let creationDate: String
 }
 
 extension Article {
     init?(jsonDictionary: [String: Any]) {
         guard let section = jsonDictionary[JsonKeys.section.rawValue] as? String,
-            let subSection = jsonDictionary[JsonKeys.section.rawValue] as? String,
-            let title = jsonDictionary[JsonKeys.section.rawValue] as? String,
-            let url = jsonDictionary[JsonKeys.section.rawValue] as? String,
-            let thumbnail = jsonDictionary[JsonKeys.section.rawValue] as? String,
-            let itemType = jsonDictionary[JsonKeys.section.rawValue] as? String,
-            let creationDate = jsonDictionary[JsonKeys.section.rawValue] as? String else {
+            let abstract = jsonDictionary[JsonKeys.abstract.rawValue] as? String,
+            let title = jsonDictionary[JsonKeys.title.rawValue] as? String,
+            let url = jsonDictionary[JsonKeys.url.rawValue] as? String,
+            let author = jsonDictionary[JsonKeys.author.rawValue] as? String,
+            let creationDate = jsonDictionary[JsonKeys.creationDate.rawValue] as? String else {
             return nil
         }
        
         self.section = section
-        self.subSection = subSection
+        self.abstract = abstract
         self.title = title
         self.url = url
-        self.thumbnail = thumbnail
-        self.itemType = itemType
+        self.author = author
         self.creationDate = creationDate
+
+        if let multimediaArray = jsonDictionary[JsonKeys.multimedia.rawValue] as? [[String: Any]] {
+            var multimediaItems = [Multimedia]()
+            for item in multimediaArray {
+                guard let newItem = Multimedia(jsonDictionary: item) else {
+                    print("Error parsing multimedia item")
+                    continue
+                }
+                multimediaItems.append(newItem)
+            }
+            multimedia = multimediaItems
+        }else{
+            self.multimedia = nil
+        }
     }
 }
 
-
 private enum JsonKeys: String {
     case section
-    case subsection
+    case abstract
     case title
     case url
-    case thumbnail = "thumbnail_standard"
-    case itemType = "item_type"
+    case author = "byline"
     case creationDate = "created_date"
+    case multimedia = "multimedia"
 }

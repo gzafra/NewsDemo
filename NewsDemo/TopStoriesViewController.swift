@@ -10,24 +10,31 @@ import UIKit
 
 class TopStoriesViewController: UITableViewController {
 
-    var viewModels: [ArticleViewModel] = [
-        ArticleViewModel(headline: "Article 1"),
-        ArticleViewModel(headline: "Article 2"),
-        ArticleViewModel(headline: "Article 3"),
-        ArticleViewModel(headline: "Article 4"),
-        ArticleViewModel(headline: "Article 5"),
-        ArticleViewModel(headline: "Article 6")
-    ]
-
+    var viewModels = [ArticleViewModel]()
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        reloadData()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+    }
+    
+    func reloadData() {
         let dataManager = DataManager()
         dataManager.fetchTopStories(resultBlock: { (articles) in
             for article in articles {
                 let viewModel = ArticleViewModel(with: article)
                 self.viewModels.append(viewModel)
             }
+            
+            self.tableView.reloadData()
             
         }) { (error) in
             print("Error fetching articles")

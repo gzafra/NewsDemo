@@ -23,10 +23,7 @@ final class DataManager {
         let parameters: Parameters = ["api-key": apiKey]
 
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON { response in
-            print("Request: \(String(describing: response.request))")
-            print("Response: \(String(describing: response.response))")
-            print("Error: \(String(describing: response.error))")
-
+            
             guard let responseJSON = response.result.value as? [String:AnyObject],
                 let results = responseJSON["results"] as? [AnyObject] else {
                 errorBlock?(Errors.invalidJson)
