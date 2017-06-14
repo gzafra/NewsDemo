@@ -1,15 +1,14 @@
 //
-//  NewsDemoTests.swift
-//  NewsDemoTests
+//  ArticlesViewModelTests.swift
+//  NewsDemo
 //
 //  Created by Zafra, Guillermo (Consultant) on 14/06/2017.
 //  Copyright © 2017 gzp. All rights reserved.
 //
 
 import XCTest
-@testable import NewsDemo
 
-class NewsDemoTests: XCTestCase {
+class ArticlesViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

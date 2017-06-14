@@ -7,12 +7,42 @@
 //
 
 import Foundation
+import Alamofire
 
 typealias ArticlesBlock = ([Article])->()
 typealias ErrorBlock = ((Error)->())?
 
 final class DataManager {
-    func fetchTables(resultBlock: @escaping ArticlesBlock, errorBlock: ErrorBlock) {
+    
+    func fetchTopStories(resultBlock: @escaping ArticlesBlock, errorBlock: ErrorBlock) {
+        guard let url = Endpoints.topStories.url, let apiKey = ConfigValues.apiKey.value else {
+            errorBlock?(Errors.invalidRequest)
+            return
+        }
         
+        let parameters: Parameters = ["api-key": apiKey]
+
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { response in
+            print("Request: \(String(describing: response.request))")
+            print("Response: \(String(describing: response.response))")
+            print("Error: \(String(describing: response.error))")
+
+            guard let responseJSON = response.result.value as? [String:AnyObject],
+                let results = responseJSON["results"] as? [AnyObject] else {
+                errorBlock?(Errors.invalidJson)
+                return
+            }
+            
+            var articlesResult = [Article]()
+            for case let object as [String: Any] in results {
+                guard let article = Article(jsonDictionary: object) else {
+                    print("Error parsing object: \(object)")
+                    continue
+                }
+                articlesResult.append(article)
+            }
+            resultBlock(articlesResult)
+        }
     }
+    
 }

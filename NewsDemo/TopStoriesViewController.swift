@@ -23,7 +23,7 @@ class TopStoriesViewController: UITableViewController {
         super.viewDidLoad()
         
         let dataManager = DataManager()
-        dataManager.fetchTables(resultBlock: { (articles) in
+        dataManager.fetchTopStories(resultBlock: { (articles) in
             for article in articles {
                 let viewModel = ArticleViewModel(with: article)
                 self.viewModels.append(viewModel)
