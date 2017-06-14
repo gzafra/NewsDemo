@@ -16,15 +16,14 @@ class TopStoriesViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.refreshControl?.addTarget(self, action: #selector(TopStoriesViewController.handleRefresh(_:)), for: .valueChanged)
-        
+
         loadInitialData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.refreshControl?.beginRefreshing()
         reloadData()
     }
     
@@ -47,6 +46,7 @@ class TopStoriesViewController: UITableViewController {
             
             self.tableView.reloadData()
             self.loadImageForVisibleCells()
+            self.refreshControl?.endRefreshing()
         }) { (error) in
             print("Error fetching articles")
         }

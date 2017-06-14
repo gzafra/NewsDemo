@@ -25,7 +25,7 @@ extension ArticleViewModel {
         description = article.abstract
         articleUrl = article.url
         author = article.author
-        creationDate = article.creationDate
+        creationDate = article.creationDate.shortDate
         
         // Parse multimedia items to get only the urls we need
         if let multimediaItems = article.multimedia {
@@ -39,6 +39,24 @@ extension ArticleViewModel {
                     continue
                 }
             }
+        }
+    }
+}
+
+extension String {
+    var shortDate: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_GB")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        
+        if let parsedDateTimeString = formatter.date(from: self) {
+            formatter.dateStyle = .short
+            formatter.timeStyle = .none
+            return formatter.string(from: parsedDateTimeString)
+        } else {
+            print("ERROR: Could not parse date")
+            return ""
         }
     }
 }

@@ -101,31 +101,41 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRI-3F-S1y">
-                                <rect key="frame" x="90" y="631" width="195" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TeY-19-day">
+                                <rect key="frame" x="0.0" y="631" width="375" height="36"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRI-3F-S1y">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
+                                        <state key="normal" title="Show full article"/>
+                                        <connections>
+                                            <segue destination="GJY-ZR-Sop" kind="show" identifier="ShowWebView" id="XCj-11-MxU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Ops-mO-F77"/>
+                                    <constraint firstItem="zRI-3F-S1y" firstAttribute="leading" secondItem="TeY-19-day" secondAttribute="leading" id="6Tk-TD-bum"/>
+                                    <constraint firstAttribute="bottom" secondItem="zRI-3F-S1y" secondAttribute="bottom" id="TLj-AM-lFN"/>
+                                    <constraint firstAttribute="trailing" secondItem="zRI-3F-S1y" secondAttribute="trailing" id="aXh-Ry-Zn5"/>
+                                    <constraint firstAttribute="height" constant="36" id="nBa-NL-rXg"/>
+                                    <constraint firstItem="zRI-3F-S1y" firstAttribute="top" secondItem="TeY-19-day" secondAttribute="top" id="vhA-fY-D2X"/>
                                 </constraints>
-                                <state key="normal" title="Full Article"/>
-                                <connections>
-                                    <segue destination="GJY-ZR-Sop" kind="show" identifier="ShowWebView" id="XCj-11-MxU"/>
-                                </connections>
-                            </button>
+                            </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="UVB-WB-NUZ">
-                                <rect key="frame" x="12" y="387" width="351" height="244"/>
+                                <rect key="frame" x="12" y="408" width="351" height="223"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Sw-cm-9sz">
-                                <rect key="frame" x="16" y="364" width="65" height="17"/>
+                                <rect key="frame" x="16" y="364" width="343" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01/01/2017" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIg-dh-XTK">
-                                <rect key="frame" x="286" y="362" width="73" height="21"/>
+                                <rect key="frame" x="16" y="383" width="343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="t0i-8Y-NUb"/>
                                 </constraints>
@@ -136,21 +146,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wIg-dh-XTK" firstAttribute="top" secondItem="5TV-Ll-8LG" secondAttribute="bottom" constant="4" id="1sd-NR-xfn"/>
                             <constraint firstItem="UVB-WB-NUZ" firstAttribute="leading" secondItem="FLL-2s-3VU" secondAttribute="leading" constant="12" id="5vx-ym-I0M"/>
+                            <constraint firstItem="wIg-dh-XTK" firstAttribute="leading" secondItem="FLL-2s-3VU" secondAttribute="leading" constant="16" id="7CH-6g-UJt"/>
                             <constraint firstAttribute="trailing" secondItem="UVB-WB-NUZ" secondAttribute="trailing" constant="12" id="9Lq-0v-vMo"/>
                             <constraint firstItem="9gS-dK-C6r" firstAttribute="top" secondItem="48H-tt-4Wu" secondAttribute="bottom" constant="6" id="C9D-V8-N06"/>
-                            <constraint firstItem="3Sw-cm-9sz" firstAttribute="centerY" secondItem="wIg-dh-XTK" secondAttribute="centerY" id="CNd-Xs-857"/>
                             <constraint firstItem="UVB-WB-NUZ" firstAttribute="top" secondItem="wIg-dh-XTK" secondAttribute="bottom" constant="4" id="Cga-lr-kRd"/>
-                            <constraint firstItem="SNS-1W-jPX" firstAttribute="top" secondItem="zRI-3F-S1y" secondAttribute="bottom" constant="6" id="CrH-Ry-7xa"/>
-                            <constraint firstItem="zRI-3F-S1y" firstAttribute="leading" secondItem="FLL-2s-3VU" secondAttribute="leading" constant="90" id="DWi-Fu-FJt"/>
                             <constraint firstItem="9gS-dK-C6r" firstAttribute="leading" secondItem="FLL-2s-3VU" secondAttribute="leading" constant="40" id="EDN-sq-z8U"/>
-                            <constraint firstAttribute="trailing" secondItem="zRI-3F-S1y" secondAttribute="trailing" constant="90" id="GYv-vp-FRP"/>
+                            <constraint firstItem="zRI-3F-S1y" firstAttribute="top" secondItem="UVB-WB-NUZ" secondAttribute="bottom" id="Hoi-av-ZIB"/>
+                            <constraint firstItem="wIg-dh-XTK" firstAttribute="top" secondItem="3Sw-cm-9sz" secondAttribute="bottom" constant="2" id="J2c-jZ-oeO"/>
+                            <constraint firstItem="TeY-19-day" firstAttribute="leading" secondItem="FLL-2s-3VU" secondAttribute="leading" id="LrX-gu-jWg"/>
+                            <constraint firstItem="3Sw-cm-9sz" firstAttribute="top" secondItem="5TV-Ll-8LG" secondAttribute="bottom" constant="6" id="MWM-hO-l6U"/>
                             <constraint firstItem="3Sw-cm-9sz" firstAttribute="leading" secondItem="FLL-2s-3VU" secondAttribute="leading" constant="16" id="Mhk-8t-DBT"/>
+                            <constraint firstAttribute="trailing" secondItem="TeY-19-day" secondAttribute="trailing" id="R72-f0-Lh7"/>
+                            <constraint firstAttribute="trailing" secondItem="3Sw-cm-9sz" secondAttribute="trailing" constant="16" id="RL9-Qe-mhe"/>
                             <constraint firstAttribute="trailing" secondItem="wIg-dh-XTK" secondAttribute="trailing" constant="16" id="Slp-aX-bGP"/>
-                            <constraint firstItem="zRI-3F-S1y" firstAttribute="top" secondItem="UVB-WB-NUZ" secondAttribute="bottom" id="WHE-wh-Pu6"/>
                             <constraint firstItem="5TV-Ll-8LG" firstAttribute="leading" secondItem="FLL-2s-3VU" secondAttribute="leading" constant="60" id="WiL-D6-Fq3"/>
                             <constraint firstAttribute="trailing" secondItem="9gS-dK-C6r" secondAttribute="trailing" constant="40" id="ZyA-Qk-c7F"/>
+                            <constraint firstItem="SNS-1W-jPX" firstAttribute="top" secondItem="TeY-19-day" secondAttribute="bottom" id="mS3-x1-CuE"/>
                             <constraint firstAttribute="trailing" secondItem="5TV-Ll-8LG" secondAttribute="trailing" constant="60" id="saL-OQ-sK6"/>
                             <constraint firstItem="5TV-Ll-8LG" firstAttribute="top" secondItem="9gS-dK-C6r" secondAttribute="bottom" constant="12" id="wAa-Kr-qeL"/>
                         </constraints>
@@ -171,7 +183,7 @@
         <!--Full Article View Controller-->
         <scene sceneID="yOM-7b-IaD">
             <objects>
-                <viewController id="GJY-ZR-Sop" customClass="FullArticleViewController" customModule="NewsDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="GJY-ZR-Sop" customClass="FullArticleViewController" customModule="NewsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Af6-kA-K2h"/>
                         <viewControllerLayoutGuide type="bottom" id="rG0-iR-A62"/>
