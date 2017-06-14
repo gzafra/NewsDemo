@@ -14,11 +14,31 @@ class ArticleTableCell: UITableViewCell {
     @IBOutlet weak var thumbnailImage: UIImageView!
     @IBOutlet weak var headlineLabel: UILabel!
     
+    var viewModel: ArticleViewModel?
+    
     func setup(with article: ArticleViewModel) {
-        headlineLabel.text = article.headline
+        self.viewModel = article
+        
+        bindViewModel()
     }
 
+    func bindViewModel() {
+        thumbnailImage.image = nil
+        
+        guard let viewModel = viewModel else {
+            print("Invalid ViewModel")
+                return
+        }
+        headlineLabel.text = viewModel.headline
+    }
     
-
+    func beginThumbnailLoad() {
+        viewModel?.thumbnailImage?.beginThumbnailRequest(with: { (image) in
+            self.thumbnailImage.image = image
+        })
+    }
     
+    func cancelThumbnailLoad() {
+        viewModel?.thumbnailImage?.cancelThumbnailRequest()
+    }
 }

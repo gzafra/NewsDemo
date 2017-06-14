@@ -35,7 +35,7 @@ class TopStoriesViewController: UITableViewController {
             }
             
             self.tableView.reloadData()
-            
+            self.loadImageForVisibleCells()
         }) { (error) in
             print("Error fetching articles")
         }
@@ -56,19 +56,42 @@ class TopStoriesViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTableCell.identifier, for: indexPath) as? ArticleTableCell else {
             return UITableViewCell()
         }
+        
         cell.setup(with: viewModels[indexPath.row])
         return cell
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        (cell as! ArticleTableCell).cancelThumbnailLoad()
     }
-    */
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
 
+        
+    }
+
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PresentDetail" {
+            let itemDetailViewController = segue.destination as! DetailViewController
+            
+            // Get the cell that generated this segue.
+//            let indexPath = sender as! NSIndexPath
+//            let selectedItem = self.listOfItems[indexPath.row]
+//            itemDetailViewController.jsonItem = selectedItem
+            
+        }
+    }
+
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        loadImageForVisibleCells()
+    }
+    
+    func loadImageForVisibleCells() {
+        for case let cell as ArticleTableCell in tableView.visibleCells {
+            cell.beginThumbnailLoad()
+        }
+    }
 }

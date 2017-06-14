@@ -28,6 +28,8 @@
 		B6E96B3B1EF1AE730057986B /* Multimedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E96B3A1EF1AE730057986B /* Multimedia.swift */; };
 		B6E96B3D1EF1B0520057986B /* MultimediaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E96B3C1EF1B0520057986B /* MultimediaTypes.swift */; };
 		B6F63BD01EF1B2460000C185 /* TopStories.json in Resources */ = {isa = PBXBuildFile; fileRef = B6F63BCF1EF1B2460000C185 /* TopStories.json */; };
+		B6F63BD21EF1B9BC0000C185 /* AsyncImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F63BD11EF1B9BC0000C185 /* AsyncImageViewModel.swift */; };
+		B6F63BD41EF1BE150000C185 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F63BD31EF1BE150000C185 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		B6E96B3A1EF1AE730057986B /* Multimedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multimedia.swift; sourceTree = "<group>"; };
 		B6E96B3C1EF1B0520057986B /* MultimediaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultimediaTypes.swift; sourceTree = "<group>"; };
 		B6F63BCF1EF1B2460000C185 /* TopStories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TopStories.json; sourceTree = "<group>"; };
+		B6F63BD11EF1B9BC0000C185 /* AsyncImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImageViewModel.swift; sourceTree = "<group>"; };
+		B6F63BD31EF1BE150000C185 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				B612FC791EF1670400A5CA02 /* TopStoriesViewController.swift */,
+				B6F63BD31EF1BE150000C185 /* DetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				B612FC871EF16C2400A5CA02 /* ArticleViewModel.swift */,
+				B6F63BD11EF1B9BC0000C185 /* AsyncImageViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -467,9 +473,11 @@
 				B612FC821EF167E500A5CA02 /* Article.swift in Sources */,
 				B67D3ECD1EF1A44D00BECF0E /* Errors.swift in Sources */,
 				B6E96B3D1EF1B0520057986B /* MultimediaTypes.swift in Sources */,
+				B6F63BD21EF1B9BC0000C185 /* AsyncImageViewModel.swift in Sources */,
 				B67D3EBD1EF17E1C00BECF0E /* Endpoints.swift in Sources */,
 				B62CE2061EF17431006E9DB6 /* LocalStorageManager.swift in Sources */,
 				B67D3EC21EF1817200BECF0E /* ConfigValues.swift in Sources */,
+				B6F63BD41EF1BE150000C185 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,7 +562,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -599,7 +607,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -613,6 +621,7 @@
 			baseConfigurationReference = B465CF39570B6D566CB09A70 /* Pods-NewsDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NewsDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gzp.NewsDemo;
@@ -626,6 +635,7 @@
 			baseConfigurationReference = 2EEE38A549002778CA60E793 /* Pods-NewsDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NewsDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gzp.NewsDemo;

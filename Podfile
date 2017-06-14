@@ -7,11 +7,13 @@ target 'NewsDemo' do
 
   # Pods for NewsDemo
   pod 'Alamofire'
+  pod 'AlamofireImage', '~> 3.1'
 
   target 'NewsDemoTests' do
     inherit! :search_paths
     # Pods for testing
 	pod 'Alamofire'
+	pod 'AlamofireImage', '~> 3.1'
   end
 
 end

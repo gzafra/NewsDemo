@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AlamofireImage
 
 struct ArticleViewModel {
     let headline: String
@@ -15,11 +14,9 @@ struct ArticleViewModel {
     let articleUrl: String
     let author: String
     let creationDate: String
-    var smallThumbnailUrl: String?
-    var largeThumbnailUrl: String?
     
-    var smallThumbnailImage: UIImage?
-    var largeThumbnailImage: UIImage?
+    var thumbnailImage: AsyncImageViewModel?
+    var image: AsyncImageViewModel?
 }
 
 extension ArticleViewModel {
@@ -35,9 +32,9 @@ extension ArticleViewModel {
             for item in multimediaItems {
                 switch item.format {
                 case .standard:
-                    smallThumbnailUrl = item.url
+                    thumbnailImage = AsyncImageViewModel(urlString: item.url)
                 case .large:
-                    largeThumbnailUrl = item.url
+                    image = AsyncImageViewModel(urlString: item.url)
                 default:
                     continue
                 }
@@ -47,20 +44,3 @@ extension ArticleViewModel {
 }
 
 
-extension ArticleViewModel {
-
-    func requestImage(with callback: ()->(UIImage)) {
-        Alamofire.request(imageUrl, method: .get).responseImage { response in
-            guard let image = response.result.value else {
-                print("Error loading image")
-                return
-            }
-            
-            callback(image)
-        }
-    }
-    
-    func cancelImageRequest() {
-        Alamofire.can
-    }
-}
