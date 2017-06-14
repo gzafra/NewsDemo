@@ -9,17 +9,17 @@
 import Foundation
 
 class LocalStorageManager: NSObject {
-    private let jsonFileName = "CachedData.json"
     private let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     
-    // MARK: Disk management
-    
-    func save(data jsonData: NSData!) -> Bool {
-        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first, let path = NSURL(fileURLWithPath: dir).appendingPathComponent(jsonFileName) {
+
+    /// Saves a Data object into the default documents directory with the provided file name. Returns false if fails.
+    @discardableResult
+    func save(_ data: Data!, withName name: String) -> Bool {
+        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first, let path = NSURL(fileURLWithPath: dir).appendingPathComponent(name) {
             
 
             do {
-                try jsonData.write(to: path, options: .atomic)
+                try data.write(to: path, options: .atomic)
                 
                 return true
             }catch let error as NSError {
@@ -29,10 +29,11 @@ class LocalStorageManager: NSObject {
         return false
     }
     
-    func data() -> NSData? {
-        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first, let path = NSURL(fileURLWithPath: dir).appendingPathComponent(jsonFileName) {
+    /// Loads a Data object from the default documents directory for the provided file name. Returns nil if fails.
+    func data(withName name: String) -> Data? {
+        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first  {
             
-            let data = NSData(contentsOf: path)
+            let data = try? Data(contentsOf: URL(fileURLWithPath: dir).appendingPathComponent(name))
             return data
         }
         return nil

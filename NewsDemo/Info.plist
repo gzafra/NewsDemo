@@ -2,9 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>API_KEY</key>
+	<key>EndPoints</key>
+	<dict>
+		<key>TopStories</key>
+		<string>topstories/v2/home.json</string>
+	</dict>
+	<key>ApiKey</key>
 	<string>b5003dc5309445a59c6959ee7db30685</string>
-	<key>BASE_URL</key>
+	<key>BaseUrl</key>
 	<string>https://api.nytimes.com/svc/</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

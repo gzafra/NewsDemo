@@ -9,6 +9,10 @@
 import Foundation
 
 enum Errors: Error {
+    case networkError(subType: NetworkErrors)
+}
+
+enum NetworkErrors: Error {
     case invalidRequest
     case invalidJson
 }

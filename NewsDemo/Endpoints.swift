@@ -8,15 +8,16 @@
 
 import Foundation
 
-private let basePath = "https://api.nytimes.com/svc/"
-
+// TODO: Section (home, news, ...) in TopStories should be a parameter
 enum Endpoints: String {
-    case topStories = "topstories/v2/home.json"
+    case topStories = "TopStories"
     
     var url: String? {
-        guard let baseUrl = ConfigValues.baseUrl.value else {
-            return nil
+        guard let baseUrl = ConfigValues.baseUrl.string,
+            let availableEndPoints = ConfigValues.endpoints.dictionary,
+            let endPoint = availableEndPoints[self.rawValue] else {
+                return nil
         }
-        return baseUrl + self.rawValue
+        return baseUrl + endPoint
     }
 }

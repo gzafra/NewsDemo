@@ -14,32 +14,69 @@ typealias ErrorBlock = ((Error)->())?
 
 final class DataManager {
     
+    static var shared = DataManager()
+    
+    var storageManager  = LocalStorageManager()
+    
+    /// Fetches Top Stories remotely
     func fetchTopStories(resultBlock: @escaping ArticlesBlock, errorBlock: ErrorBlock) {
-        guard let url = Endpoints.topStories.url, let apiKey = ConfigValues.apiKey.value else {
-            errorBlock?(Errors.invalidRequest)
+        guard let url = Endpoints.topStories.url, let apiKey = ConfigValues.apiKey.string else {
+            errorBlock?(Errors.networkError(subType: .invalidRequest))
             return
         }
         
         let parameters: Parameters = ["api-key": apiKey]
 
+        // TODO: Verify cache policy being used by Alamofire
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON { response in
             
-            guard let responseJSON = response.result.value as? [String:AnyObject],
-                let results = responseJSON["results"] as? [AnyObject] else {
-                errorBlock?(Errors.invalidJson)
+            guard let responseJson = response.result.value as? [String: AnyObject],
+                let articlesArray = try? self.articles(for: responseJson) else {
+                errorBlock?(Errors.networkError(subType: .invalidJson))
                 return
             }
             
-            var articlesResult = [Article]()
-            for case let object as [String: Any] in results {
-                guard let article = Article(jsonDictionary: object) else {
-                    print("Error parsing object: \(object)")
-                    continue
-                }
-                articlesResult.append(article)
+            if self.storageManager.save(response.data, withName: Endpoints.topStories.rawValue) {
+                print("Remote data saved to local storage")
             }
-            resultBlock(articlesResult)
+
+            resultBlock(articlesArray)
         }
     }
     
+    /// Loads data from local storage. Returns empty data if not found
+    func cachedTopStories() -> [Article] {
+        var articles = [Article]()
+        if let data = storageManager.data(withName: Endpoints.topStories.rawValue),
+            let jsonDict = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String: AnyObject],
+            let articlesArray = try? self.articles(for: jsonDict) {
+            articles.append(contentsOf: articlesArray)
+            print("Loading data from local storage.")
+        }
+        
+        return articles
+    }
+ 
+    
+}
+
+// MARK: - Data parsing
+
+extension DataManager {
+    fileprivate func articles(for dict: [String:AnyObject]) throws -> [Article] {
+        guard let results = dict["results"] as? [AnyObject] else {
+            throw Errors.networkError(subType: .invalidJson)
+        }
+        
+        var articles = [Article]()
+        for case let object as [String: Any] in results {
+            guard let article = Article(jsonDictionary: object) else {
+                print("Error parsing object: \(object). Skipping object.")
+                continue
+            }
+            articles.append(article)
+        }
+        
+        return articles
+    }
 }

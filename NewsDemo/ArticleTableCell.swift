@@ -30,6 +30,9 @@ class ArticleTableCell: UITableViewCell {
                 return
         }
         headlineLabel.text = viewModel.headline
+        if let image = viewModel.thumbnailImage?.image {
+            thumbnailImage.image = image
+        }
     }
     
     func beginThumbnailLoad() {

@@ -9,10 +9,13 @@
 import Foundation
 
 enum ConfigValues: String {
-    case baseUrl = "BASE_URL"
-    case apiKey = "API_KEY"
+    case baseUrl = "BaseUrl"
+    case apiKey = "ApiKey"
+    case endpoints = "EndPoints"
     
-    var value: String? {
+    
+    /// Returns a string value from the Info.plist for the specific config key
+    var string: String? {
         guard let env = Bundle.main.infoDictionary,
             let configValue = env[self.rawValue] as? String else {
             return nil
@@ -20,4 +23,12 @@ enum ConfigValues: String {
         return configValue
     }
     
+    /// Returns a dictionary value from the Info.plist for the specific config key
+    var dictionary: [String: String]? {
+        guard let env = Bundle.main.infoDictionary,
+            let configDict = env[self.rawValue] as? [String: String] else {
+            return nil
+        }
+        return configDict
+    }
 }

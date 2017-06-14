@@ -17,18 +17,29 @@ class TopStoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        reloadData()
+//        self.refreshControl?.addTarget(self, action: #selector(TopStoriesViewController.handleRefresh(_:)), for: .valueChanged)
+        
+        loadInitialData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        reloadData()
+    }
+    
+    func loadInitialData() {
+        // Load initial data from offline storage
+        for article in DataManager.shared.cachedTopStories() {
+            let viewModel = ArticleViewModel(with: article)
+            self.viewModels.append(viewModel)
+        }
     }
     
     func reloadData() {
-        let dataManager = DataManager()
-        dataManager.fetchTopStories(resultBlock: { (articles) in
+        self.viewModels.removeAll()
+        
+        DataManager.shared.fetchTopStories(resultBlock: { (articles) in
             for article in articles {
                 let viewModel = ArticleViewModel(with: article)
                 self.viewModels.append(viewModel)
@@ -65,25 +76,9 @@ class TopStoriesViewController: UITableViewController {
         (cell as! ArticleTableCell).cancelThumbnailLoad()
     }
     
-    func handleRefresh(refreshControl: UIRefreshControl) {
-
-        
+    @IBAction func handleRefresh(_ sender: UIRefreshControl) {
+        reloadData()
     }
-
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "PresentDetail" {
-            let itemDetailViewController = segue.destination as! DetailViewController
-            
-            // Get the cell that generated this segue.
-//            let indexPath = sender as! NSIndexPath
-//            let selectedItem = self.listOfItems[indexPath.row]
-//            itemDetailViewController.jsonItem = selectedItem
-            
-        }
-    }
-
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         loadImageForVisibleCells()
@@ -94,4 +89,15 @@ class TopStoriesViewController: UITableViewController {
             cell.beginThumbnailLoad()
         }
     }
+
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let itemDetailViewController = segue.destination as! DetailViewController
+        guard let cell = sender as? ArticleTableCell, let viewModel = cell.viewModel else {
+            return
+        }
+        itemDetailViewController.setup(with: viewModel)
+    }
+
 }
