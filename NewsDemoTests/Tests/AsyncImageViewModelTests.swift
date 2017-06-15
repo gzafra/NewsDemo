@@ -12,14 +12,27 @@ import XCTest
 class AsyncImageViewModelTests: XCTestCase {
     private let expectedDelay: TimeInterval = 5.0 // Expected delay to load images.
     
+    override func setUp() {
+        super.setUp()
+        
+        LocalStorageHelper.clearCachedFiles()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        
+        LocalStorageHelper.clearCachedFiles()
+    }
+    
     func testAsyncImageViewModel() {
         let urlTest = "https://static01.nyt.com/images/2017/06/15/world/14USBriefing-London/14USBriefing-London-thumbStandard.jpg"
         
         let asyncImageViewModel = AsyncImageViewModel(urlString: urlTest)
         
-        XCTAssertNotNil(asyncImageViewModel.urlString)
-        XCTAssertNil(asyncImageViewModel.image)
-        XCTAssertNil(asyncImageViewModel.receipt)
+        XCTAssertNotNil(asyncImageViewModel)
+        XCTAssertNotNil(asyncImageViewModel!.url)
+        XCTAssertNil(asyncImageViewModel!.image)
+        XCTAssertNil(asyncImageViewModel!.receipt)
     }
     
     func testAsyncImageLoadingSuccess() {
@@ -27,15 +40,16 @@ class AsyncImageViewModelTests: XCTestCase {
         
         let asyncImageViewModel = AsyncImageViewModel(urlString: urlTest)
         
-        XCTAssertNotNil(asyncImageViewModel.urlString)
-        XCTAssertNil(asyncImageViewModel.image)
-        XCTAssertNil(asyncImageViewModel.receipt)
+        XCTAssertNotNil(asyncImageViewModel)
+        XCTAssertNotNil(asyncImageViewModel!.url)
+        XCTAssertNil(asyncImageViewModel!.image)
+        XCTAssertNil(asyncImageViewModel!.receipt)
         
         testExpectation(description: "Loading image asynchronously", actionBlock: { (expectation) in
-            asyncImageViewModel.beginThumbnailRequest { (image) in
+            asyncImageViewModel!.beginThumbnailRequest { (image) in
                 XCTAssertNotNil(image)
-                XCTAssertNotNil(asyncImageViewModel.image)
-                XCTAssertNil(asyncImageViewModel.receipt)
+                XCTAssertNotNil(asyncImageViewModel!.image)
+                XCTAssertNil(asyncImageViewModel!.receipt)
                 expectation.fulfill()
             }
         }, waitFor: expectedDelay)
@@ -48,17 +62,18 @@ class AsyncImageViewModelTests: XCTestCase {
         
         let asyncImageViewModel = AsyncImageViewModel(urlString: urlTest)
         
-        XCTAssertNotNil(asyncImageViewModel.urlString)
-        XCTAssertNil(asyncImageViewModel.image)
-        XCTAssertNil(asyncImageViewModel.receipt)
+        XCTAssertNotNil(asyncImageViewModel)
+        XCTAssertNotNil(asyncImageViewModel!.url)
+        XCTAssertNil(asyncImageViewModel!.image)
+        XCTAssertNil(asyncImageViewModel!.receipt)
         
         testExpectation(description: "Loading image asynchronously", actionBlock: { (expectation) in
-            asyncImageViewModel.beginThumbnailRequest { (image) in
+            asyncImageViewModel!.beginThumbnailRequest { (image) in
                 XCTFail()
             }
-            asyncImageViewModel.cancelThumbnailRequest()
-            XCTAssertNil(asyncImageViewModel.image)
-            XCTAssertNotNil(asyncImageViewModel.receipt)
+            asyncImageViewModel!.cancelThumbnailRequest()
+            XCTAssertNil(asyncImageViewModel!.image)
+            XCTAssertNotNil(asyncImageViewModel!.receipt)
             expectation.fulfill()
         }, waitFor: expectedDelay)
     }
@@ -68,19 +83,20 @@ class AsyncImageViewModelTests: XCTestCase {
         
         let asyncImageViewModel = AsyncImageViewModel(urlString: urlTest)
         
-        XCTAssertNotNil(asyncImageViewModel.urlString)
-        XCTAssertNil(asyncImageViewModel.image)
-        XCTAssertNil(asyncImageViewModel.receipt)
+        XCTAssertNotNil(asyncImageViewModel)
+        XCTAssertNotNil(asyncImageViewModel!.url)
+        XCTAssertNil(asyncImageViewModel!.image)
+        XCTAssertNil(asyncImageViewModel!.receipt)
         
         testExpectation(description: "Loading image asynchronously", actionBlock: { (expectation) in
-            asyncImageViewModel.beginThumbnailRequest { (image) in
+            asyncImageViewModel!.beginThumbnailRequest { (image) in
                 XCTAssertNil(image)
-                XCTAssertNil(asyncImageViewModel.image)
+                XCTAssertNil(asyncImageViewModel!.image)
             }
 
             // Request will time out. Test that image is still not loaded after usual delay
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + expectedDelay, execute: {
-                XCTAssertNil(asyncImageViewModel.image)
+                XCTAssertNil(asyncImageViewModel!.image)
                 expectation.fulfill()
             })
         }, waitFor: expectedDelay + 1.0)

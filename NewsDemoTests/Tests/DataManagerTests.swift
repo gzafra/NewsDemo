@@ -17,12 +17,14 @@ class DataManagerTests: XCTestCase {
         super.setUp()
         
         dataManager = DataManager()
+        LocalStorageHelper.clearCachedFiles()
     }
     
     override func tearDown() {
         
         dataManager = nil
         super.tearDown()
+        LocalStorageHelper.clearCachedFiles()
     }
     
     func testFetchTopStories() {

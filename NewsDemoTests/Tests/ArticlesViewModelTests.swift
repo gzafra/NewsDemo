@@ -22,8 +22,8 @@ class ArticlesViewModelTests: XCTestCase {
         XCTAssertEqual(articleViewModel.articleUrl, article.url)
         XCTAssertNotNil(articleViewModel.thumbnailImage)
         XCTAssertNotNil(articleViewModel.image)
-        XCTAssertNotNil(articleViewModel.thumbnailImage?.urlString)
-        XCTAssertNotNil(articleViewModel.image?.urlString)
+        XCTAssertNotNil(articleViewModel.thumbnailImage?.url)
+        XCTAssertNotNil(articleViewModel.image?.url)
         XCTAssertEqual(articleViewModel.author, article.author)
         XCTAssertEqual(articleViewModel.creationDate, "14/06/2017")
     }

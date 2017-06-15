@@ -27,7 +27,7 @@ class AsyncImageViewModel {
             self.image = image
         }else{
             // Check if image with that name is in local storage
-            if let data = LocalStorageManager.data(withName: self.url.lastPathComponent),
+            if let data = LocalStorageHelper.data(withName: self.url.lastPathComponent),
                 let image = UIImage(data: data) {
                 print("Image found in local storage!")
                 self.image = image
@@ -56,7 +56,7 @@ extension AsyncImageViewModel {
                 self.image = image
                 // Save image data to local storage
                 if let data: Data = UIImagePNGRepresentation(image),
-                    LocalStorageManager.save(data, withName: self.url.lastPathComponent) {
+                    LocalStorageHelper.save(data, withName: self.url.lastPathComponent) {
                     print("Image saved to local storage")
                 }
                 callback(image)
