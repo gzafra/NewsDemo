@@ -127,16 +127,17 @@
 				B6F63BCF1EF1B2460000C185 /* TopStories.json */,
 			);
 			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		B612FC4D1EF166D400A5CA02 = {
 			isa = PBXGroup;
 			children = (
+				83556C08C3943EE61EF81CE2 /* Frameworks */,
 				B612FC581EF166D400A5CA02 /* NewsDemo */,
 				B612FC6D1EF166D400A5CA02 /* NewsDemoTests */,
-				B612FC571EF166D400A5CA02 /* Products */,
 				5C39ADAD09ACD01F24B4D505 /* Pods */,
-				83556C08C3943EE61EF81CE2 /* Frameworks */,
+				B612FC571EF166D400A5CA02 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,13 +153,13 @@
 		B612FC581EF166D400A5CA02 /* NewsDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B612FC7D1EF1672900A5CA02 /* Controller */,
+				B612FC851EF1681300A5CA02 /* Frameworks */,
+				B612FC7B1EF1671A00A5CA02 /* Interface */,
+				B612FC7C1EF1672500A5CA02 /* Model */,
 				B612FC861EF1682500A5CA02 /* Resources */,
 				B612FC7E1EF1673000A5CA02 /* ViewModel */,
-				B612FC7D1EF1672900A5CA02 /* Controller */,
-				B612FC7C1EF1672500A5CA02 /* Model */,
-				B612FC7B1EF1671A00A5CA02 /* Interface */,
 				B612FC591EF166D400A5CA02 /* AppDelegate.swift */,
-				B612FC851EF1681300A5CA02 /* Frameworks */,
 			);
 			path = NewsDemo;
 			sourceTree = "<group>";
@@ -166,9 +167,9 @@
 		B612FC6D1EF166D400A5CA02 /* NewsDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				B6BDF0401EF20146007EE96F /* Tests */,
 				B6BDF03D1EF1F8E4007EE96F /* Extensions */,
 				B60A6CE91EF1AA2900F525F9 /* Resources */,
+				B6BDF0401EF20146007EE96F /* Tests */,
 			);
 			path = NewsDemoTests;
 			sourceTree = "<group>";
@@ -177,30 +178,33 @@
 			isa = PBXGroup;
 			children = (
 				B62CE1FE1EF1702D006E9DB6 /* Cells */,
-				B612FC5D1EF166D400A5CA02 /* Main.storyboard */,
 				B612FC621EF166D400A5CA02 /* LaunchScreen.storyboard */,
+				B612FC5D1EF166D400A5CA02 /* Main.storyboard */,
 			);
 			name = Interface;
+			path = Interface;
 			sourceTree = "<group>";
 		};
 		B612FC7C1EF1672500A5CA02 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B612FC801EF167B700A5CA02 /* DTO */,
 				B67D3EBB1EF17DEA00BECF0E /* Enum */,
 				B62CE2041EF173C1006E9DB6 /* Manager */,
-				B612FC801EF167B700A5CA02 /* DTO */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B612FC7D1EF1672900A5CA02 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B612FC791EF1670400A5CA02 /* TopStoriesViewController.swift */,
 				B6F63BD31EF1BE150000C185 /* DetailViewController.swift */,
 				B6BDF03B1EF1E063007EE96F /* FullArticleViewController.swift */,
+				B612FC791EF1670400A5CA02 /* TopStoriesViewController.swift */,
 			);
 			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		B612FC7E1EF1673000A5CA02 /* ViewModel */ = {
@@ -210,6 +214,7 @@
 				B6F63BD11EF1B9BC0000C185 /* AsyncImageViewModel.swift */,
 			);
 			name = ViewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B612FC801EF167B700A5CA02 /* DTO */ = {
@@ -219,6 +224,7 @@
 				B6E96B3A1EF1AE730057986B /* Multimedia.swift */,
 			);
 			name = DTO;
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		B612FC851EF1681300A5CA02 /* Frameworks */ = {
@@ -226,15 +232,17 @@
 			children = (
 			);
 			name = Frameworks;
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		B612FC861EF1682500A5CA02 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B612FC651EF166D400A5CA02 /* Info.plist */,
 				B612FC601EF166D400A5CA02 /* Assets.xcassets */,
+				B612FC651EF166D400A5CA02 /* Info.plist */,
 			);
 			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		B62CE1FE1EF1702D006E9DB6 /* Cells */ = {
@@ -243,6 +251,7 @@
 				B62CE1FF1EF17053006E9DB6 /* ArticleTableCell.swift */,
 			);
 			name = Cells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B62CE2041EF173C1006E9DB6 /* Manager */ = {
@@ -252,17 +261,19 @@
 				B62CE2051EF17431006E9DB6 /* LocalStorageManager.swift */,
 			);
 			name = Manager;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		B67D3EBB1EF17DEA00BECF0E /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				B67D3EBC1EF17E1C00BECF0E /* Endpoints.swift */,
 				B67D3EC11EF1817200BECF0E /* ConfigValues.swift */,
+				B67D3EBC1EF17E1C00BECF0E /* Endpoints.swift */,
 				B67D3ECC1EF1A44D00BECF0E /* Errors.swift */,
 				B6E96B3C1EF1B0520057986B /* MultimediaTypes.swift */,
 			);
 			name = Enum;
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		B6BDF03D1EF1F8E4007EE96F /* Extensions */ = {
@@ -271,16 +282,18 @@
 				B67D3EC81EF1A07300BECF0E /* XCTestCaseExtensions.swift */,
 			);
 			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B6BDF0401EF20146007EE96F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				B67D3ECA1EF1A0EF00BECF0E /* ArticlesViewModelTests.swift */,
-				B612FC6E1EF166D400A5CA02 /* DataManagerTests.swift */,
 				B6BDF03E1EF1F8F6007EE96F /* AsyncImageViewModelTests.swift */,
+				B612FC6E1EF166D400A5CA02 /* DataManagerTests.swift */,
 			);
 			name = Tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,6 +545,7 @@
 				B612FC5E1EF166D400A5CA02 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		B612FC621EF166D400A5CA02 /* LaunchScreen.storyboard */ = {
@@ -540,6 +554,7 @@
 				B612FC631EF166D400A5CA02 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -646,7 +661,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = NewsDemo/Info.plist;
+				INFOPLIST_FILE = NewsDemo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gzp.NewsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -660,7 +675,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = NewsDemo/Info.plist;
+				INFOPLIST_FILE = NewsDemo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gzp.NewsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -674,7 +689,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = NewsDemoTests/Info.plist;
+				INFOPLIST_FILE = NewsDemoTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gzp.NewsDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -689,7 +704,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = NewsDemoTests/Info.plist;
+				INFOPLIST_FILE = NewsDemoTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gzp.NewsDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

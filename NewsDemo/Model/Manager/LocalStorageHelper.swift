@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class LocalStorageManager: NSObject {
+open class LocalStorageHelper: NSObject {
 //    static private let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     
 
