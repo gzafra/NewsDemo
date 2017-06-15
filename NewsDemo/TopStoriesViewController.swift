@@ -52,7 +52,7 @@ class TopStoriesViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table view data source
+    // MARK: - TableView Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -71,18 +71,24 @@ class TopStoriesViewController: UITableViewController {
         cell.setup(with: viewModels[indexPath.row])
         return cell
     }
+    
+    // MARK: - TableView Delegate
 
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as! ArticleTableCell).cancelThumbnailLoad()
     }
     
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        loadImageForVisibleCells()
+    }
+    
+    // MARK - IBActions
+    
     @IBAction func handleRefresh(_ sender: UIRefreshControl) {
         reloadData()
     }
     
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        loadImageForVisibleCells()
-    }
+    // MARK: - Utility
     
     func loadImageForVisibleCells() {
         for case let cell as ArticleTableCell in tableView.visibleCells {

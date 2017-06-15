@@ -91,6 +91,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5TV-Ll-8LG">
                                 <rect key="frame" x="60" y="103" width="255" height="255"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5TV-Ll-8LG" secondAttribute="height" multiplier="1:1" id="BqG-5Y-KYn"/>
                                 </constraints>

@@ -34,8 +34,7 @@ class DetailViewController: UIViewController {
     }
     
     func bindViewMode() {
-        if let imageUrl = viewModel.image?.urlString,
-            let url = URL(string: imageUrl) {
+        if let url = viewModel.image?.url {
             mainImage.af_setImage(withURL: url)
         }
         titleLabel.text = viewModel.headline

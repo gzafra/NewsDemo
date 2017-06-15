@@ -15,8 +15,7 @@ typealias ErrorBlock = ((Error)->())?
 final class DataManager {
     
     static var shared = DataManager()
-    
-    var storageManager  = LocalStorageManager()
+
     
     /// Fetches Top Stories remotely
     func fetchTopStories(resultBlock: @escaping ArticlesBlock, errorBlock: ErrorBlock) {
@@ -36,7 +35,7 @@ final class DataManager {
                 return
             }
             
-            if self.storageManager.save(response.data, withName: Endpoints.topStories.rawValue) {
+            if LocalStorageManager.save(response.data, withName: Endpoints.topStories.rawValue) {
                 print("Remote data saved to local storage")
             }
 
@@ -47,7 +46,7 @@ final class DataManager {
     /// Loads data from local storage. Returns empty data if not found
     func cachedTopStories() -> [Article] {
         var articles = [Article]()
-        if let data = storageManager.data(withName: Endpoints.topStories.rawValue),
+        if let data = LocalStorageManager.data(withName: Endpoints.topStories.rawValue),
             let jsonDict = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String: AnyObject],
             let articlesArray = try? self.articles(for: jsonDict) {
             articles.append(contentsOf: articlesArray)

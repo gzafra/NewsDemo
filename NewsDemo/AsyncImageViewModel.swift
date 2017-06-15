@@ -10,17 +10,29 @@ import UIKit
 import AlamofireImage
 
 class AsyncImageViewModel {
-    var urlString: String?
+    var url: URL!
     var receipt: RequestReceipt?
     var image: UIImage?
     
     let downloader = ImageDownloader()
     
-    
-    init(urlString: String, receipt: RequestReceipt? = nil, image: UIImage? = nil) {
-        self.urlString = urlString
+    init?(urlString: String, receipt: RequestReceipt? = nil, image: UIImage? = nil) {
+        guard let url = URL(string: urlString) else {
+            return nil
+        }
+        
+        self.url = url
         self.receipt = receipt
-        self.image = image
+        if image != nil {
+            self.image = image
+        }else{
+            // Check if image with that name is in local storage
+            if let data = LocalStorageManager.data(withName: self.url.lastPathComponent),
+                let image = UIImage(data: data) {
+                print("Image found in local storage!")
+                self.image = image
+            }
+        }
     }
 }
 
@@ -29,10 +41,6 @@ class AsyncImageViewModel {
 extension AsyncImageViewModel {
     
     func beginThumbnailRequest(with callback: @escaping (UIImage)->()) {
-        guard let urlString = urlString, let url = URL(string: urlString)  else {
-            return
-        }
-        
         // Return image if already loaded
         if let image = image {
             print("Loading cached image")
@@ -46,6 +54,11 @@ extension AsyncImageViewModel {
             if let image = response.result.value {
                 self.receipt = nil
                 self.image = image
+                // Save image data to local storage
+                if let data: Data = UIImagePNGRepresentation(image),
+                    LocalStorageManager.save(data, withName: self.url.lastPathComponent) {
+                    print("Image saved to local storage")
+                }
                 callback(image)
             }
         }

@@ -8,13 +8,13 @@
 
 import Foundation
 
-class LocalStorageManager: NSObject {
-    private let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+open class LocalStorageManager: NSObject {
+//    static private let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     
 
     /// Saves a Data object into the default documents directory with the provided file name. Returns false if fails.
     @discardableResult
-    func save(_ data: Data!, withName name: String) -> Bool {
+    class func save(_ data: Data!, withName name: String) -> Bool {
         if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first, let path = NSURL(fileURLWithPath: dir).appendingPathComponent(name) {
             
 
@@ -30,7 +30,7 @@ class LocalStorageManager: NSObject {
     }
     
     /// Loads a Data object from the default documents directory for the provided file name. Returns nil if fails.
-    func data(withName name: String) -> Data? {
+    class func data(withName name: String) -> Data? {
         if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first  {
             
             let data = try? Data(contentsOf: URL(fileURLWithPath: dir).appendingPathComponent(name))
