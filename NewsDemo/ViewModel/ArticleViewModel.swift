@@ -9,37 +9,39 @@
 import UIKit
 
 struct ArticleViewModel {
-    let headline: String
-    let description: String
-    let articleUrl: String
-    let author: String
-    let creationDate: String
+    let article: Article
     
-    var thumbnailImage: AsyncImageViewModel?
-    var image: AsyncImageViewModel?
-}
-
-extension ArticleViewModel {
     init(with article: Article) {
-        headline = article.title
-        description = article.abstract
-        articleUrl = article.url
-        author = article.author
-        creationDate = article.creationDate.shortDate
-        
-        // Parse multimedia items to get only the urls we need
-        if let multimediaItems = article.multimedia {
-            for item in multimediaItems {
-                switch item.format {
-                case .standard:
-                    thumbnailImage = AsyncImageViewModel(urlString: item.url)
-                case .large:
-                    image = AsyncImageViewModel(urlString: item.url)
-                default:
-                    continue
-                }
-            }
+        self.article = article
+    }
+    
+    var headline: String {
+        return article.title
+    }
+    var description: String {
+        return article.abstract
+    }
+    var articleUrl: String {
+        return article.url
+    }
+    var author: String {
+        return article.author
+    }
+    var creationDate: String {
+        return article.creationDate.shortDate
+    }
+    
+    var thumbnailImage: AsyncImageViewModel? {
+        guard let url = article.multimedia?.filter({ $0.format == .standard }).first?.url else {
+            return nil
         }
+        return AsyncImageViewModel(urlString: url)
+    }
+    var image: AsyncImageViewModel? {
+        guard let url = article.multimedia?.filter({ $0.format == .large }).first?.url else {
+            return nil
+        }
+        return AsyncImageViewModel(urlString: url)
     }
 }
 
