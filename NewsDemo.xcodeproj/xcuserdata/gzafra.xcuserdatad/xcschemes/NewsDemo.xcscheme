@@ -26,7 +26,9 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      language = ""
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -35,6 +37,16 @@
                BlueprintIdentifier = "B612FC691EF166D400A5CA02"
                BuildableName = "NewsDemoTests.xctest"
                BlueprintName = "NewsDemoTests"
+               ReferencedContainer = "container:NewsDemo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B66DC8B31FD2A52700B76F35"
+               BuildableName = "NewsDemoUITests.xctest"
+               BlueprintName = "NewsDemoUITests"
                ReferencedContainer = "container:NewsDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -55,6 +67,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
